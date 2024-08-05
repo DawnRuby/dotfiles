@@ -1,0 +1,119 @@
+$dawn: (
+  bg: rgba(30,30,30,.7),
+  bd: #FFFFFF,
+  fg: #dbd8d4,
+  sl: #c73f4a,
+  sl-bg: #262626
+);
+
+$theme: $dawn;
+$font-size: 25px;
+$font-size-bg: 30px;
+$border-radius: 30px;
+$margin: 0 5px;
+$padding: 5 30px;
+$border-width: 1px;
+$slider-min-width: 70px;
+$slider-min-height: 10px;
+$font-family: FiraCode Nerd Font Mono;
+
+
+// provide a simple way to set colors from theme-map
+@function theme($key) {
+  $val: map-get($theme, $key);
+  @return $val;
+}
+
+@keyframes gradient {
+    0%{background-position:0% 9%}
+    50%{background-position:100% 92%}
+    100%{background-position:0% 9%}
+}
+
+@keyframes warning {
+    0%{background-position:0% 9%}
+    50%{background-position:100% 92%}
+    100%{background-position:0% 9%}
+}
+
+* {
+    all: unset;
+    font-family: $font-family;
+}
+
+.bar{
+    background-color: transparent;
+}
+
+//Global Styles
+.bar-left {
+  border-radius: $border-radius;
+  border-style: solid;
+  border-width: $border-width;
+  border-color: theme(bd);
+  background-color: theme(bg);
+  color: theme(fg);
+  font-size: $font-size;
+  padding: $padding;
+}
+
+.bar-center{
+  border-radius: $border-radius;
+  border-style: solid;
+  border-width: $border-width;
+  border-color: theme(bd);
+  background-color: theme(bg);
+  color: theme(fg);
+  font-size: $font-size;
+  padding: $padding;
+}
+
+.bar-right{
+  border-radius: $border-radius;
+  border-style: solid;
+  border-width: $border-width;
+  border-color: theme(bd);
+  background-color: theme(bg);
+  color: theme(fg);
+  font-size: $font-size;
+  padding: $padding;
+}
+
+
+// Styles on classes (see eww.yuck for more information)
+
+.sidestuff slider {
+  all: unset;
+  color: theme(sl);
+}
+
+.battery {
+    margin: $margin;
+}
+
+.metric scale trough highlight {
+  all: unset;
+  background-color: theme(sl);
+  border-radius: 10px;
+}
+
+.metric scale trough {
+  border-radius: $border-radius;
+  min-height: $slider-min-height;
+  min-width: $slider-min-width;
+  margin: $margin;
+}
+
+.metric scale trough highlight {
+  background: linear-gradient(80deg, rgba(199,63,74,1) 5%, rgba(81,36,140,1) 100%);
+  border-radius: $border-radius;
+}
+
+.metric scale trough {
+  all: unset;
+  background: theme(sl-bg);
+  border-radius: $border-radius;
+  min-height: $slider-min-height;
+  min-width: $slider-min-width;
+  margin: $margin;
+}

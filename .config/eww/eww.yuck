@@ -1,0 +1,148 @@
+(defwidget status-right []
+  (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
+    (metric :label "󰓃"
+            :value volume
+            :onchange "amixer -D pulse sset Master {}%")
+    (box :class "ram"
+    	 (metric
+	    :label ""
+            :value {EWW_RAM.used_mem_perc}
+            :onchange ""
+	 )
+	 
+    )
+
+    
+    net
+    time
+
+    (box :class "battery" :orientation "h" :visible {EWW_BATTERY == "" ? false : true}
+    	 {baticon}
+    )
+  )
+)
+
+(defwidget status-left []
+  (box :class "sidestuff" :orientation "h" :space-evenly false :halign "start"
+    time
+    (box :class "battery" :orientation "h" :visible {EWW_BATTERY == "" ? false : true}
+    	 {baticon}
+    )
+  )
+)
+
+(defwidget window []
+  (box :class "window"
+       :orientation "h"
+       :space-evenly false
+       :halign "center"
+    {music != "" ? "${music}" : "${window}"}))
+
+(defwidget metric [label value onchange]
+  (box :orientation "h"
+       :class "metric"
+       :space-evenly false
+    (box :class "label" label)
+    (scale :min 0
+           :max 101
+           :active {onchange != ""}
+           :value value
+           :onchange onchange)
+   )
+)
+
+(defpoll music :interval "0.02s" "./scripts/music.sh 70")
+
+(defpoll baticon :interval "1s" "./scripts/baticon.sh")
+
+(defpoll window :interval "1s" "./scripts/activewindow.sh")
+
+(defpoll volume :interval "1s" "./scripts/getvol.sh")
+
+(defpoll time :interval "1s" "./scripts/time.sh")
+
+(defpoll net :interval "1s" "./scripts/net.sh")
+
+;; Define our windows
+(defwidget bar-left []
+  (centerbox :orientation "h"
+    (status-left)
+    (empty)
+    (empty)))
+
+
+(defwindow bar-left
+  :monitor 0
+  :exclusive false
+  :windowtype "dock"
+  :geometry (geometry :x "0.2%"
+                      :y "-50px"
+                      :width "30%"
+                      :height "50px"
+                      :anchor "top left")
+		      
+  (bar-left))
+
+(defwidget bar-center []
+  (centerbox :orientation "h"
+    (empty)
+    (window)
+    (empty)))
+
+(defwindow bar-center
+  :monitor 0
+  :exclusive true
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+                      :y "10px"
+                      :width "30%"
+                      :height "50px"
+                      :anchor "top center")
+		      
+  (bar-center))
+
+(defwidget bar-right []
+  (centerbox :orientation "h"
+    (empty)
+    (empty)
+    (status-right)))
+
+(defwindow bar-right
+  :monitor 0
+  :exclusive false
+  :windowtype "dock"
+  :geometry (geometry :x "0.2%"
+                      :y "-50px"
+                      :width "30%"
+                      :height "50px"
+                      :anchor "top right")
+		      
+  (bar-right))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;; This is a little hack to make it possible to have reserved space without actually having reserved space 
+(defwidget empty []
+  (box :class "workspaces"
+       :orientation "h"
+       :space-evenly true
+       :halign "start"
+       :spacing 10))
+
+(defwidget nobar []
+  (centerbox :orientation "h"
+    (empty)
+    (empty)
+    (empty)
+))
