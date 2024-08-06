@@ -1,9 +1,10 @@
 #!/bin/zsh
-# Created by `pipx` on 2024-07-17 02:45:58                                                                                                                                                                                                                                                           
 export PATH="$PATH:/home/dawn/.local/bin"
-syncthing &
-nextcloud &
-nm-cli &
+mpd & > /dev/null 2&1
+gentoo-pipewire-launcher & > /dev/null 2&1
+syncthing & > /dev/null 2&1
+nextcloud & > /dev/null 2&1
+nm-cli & > /dev/null 2&1
 
 #Launch these commands on login
 dbus-launch --exit-with-session Hyprland
