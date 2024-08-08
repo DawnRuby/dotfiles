@@ -1,0 +1,79 @@
+(defwidget metric [label value onchange]
+  (box :orientation "h"
+       :class "metric"
+       :space-evenly false
+    (box :class "label" label)
+    (scale :min 0
+           :max 101
+           :active {onchange != ""}
+           :value value
+           :onchange onchange)
+   )
+)
+
+;; This is a little hack to make it possible to have reserved space without actually having reserved space 
+(defwidget empty []
+  (box :class "workspaces"
+       :orientation "h"
+       :space-evenly true
+       :halign "start"
+       :spacing 10))
+
+(defwidget workspaces []
+    (box
+        (for entry in {workspaces.jsonData}
+            (button :class "workspace" {entry.workspaceId})
+	)
+    )
+)
+
+(defwidget networkMenu []
+    (box
+        (box :orientation "vertical"
+            (button :class "button" "nManager")
+	    (graph
+	       :class "txGraph"
+	       :thickness 3
+	       :min 0
+	       :max 100
+	       :vexpand false
+	       :time-range "10s"
+	       :value {net.txBytesPercent}
+	    )
+	    (graph
+	       :class "rxGraph"
+	       :thickness 3
+	       :min 0
+	       :max 100
+	       :vexpand false
+	       :time-range "10s"
+	       :value {net.rxBytesPercent}
+	    )
+	)
+    )
+)
+
+
+(defwidget networkEvent []
+    (eventbox :class "hoverMenu" :onhoverlost "./scripts/popup.sh networkMenu"
+        (revealer :transition "slideleft" :reveal "true" :duration "10000ms"
+	      (networkMenu)
+	)
+    )
+)
+
+(defwindow networkMenu
+  :monitor 0
+  :exclusive false
+  :windowtype "dock"
+  :valign "start"
+  :vexpand true
+  :hexpand false
+  :geometry (geometry :x "0.5%"
+                      :y "0px"
+		      :width "60px"
+		      :height "160px"
+                      :anchor "top right")
+		      
+  (networkEvent)
+)

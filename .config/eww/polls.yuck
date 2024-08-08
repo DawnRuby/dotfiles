@@ -1,0 +1,8 @@
+(deflisten workspaces :initial "" "zsh ~/.config/eww/scripts/workspaces.sh")
+(deflisten net :initial "" "./scripts/net.sh 0.01 0.01 100000 100000")
+(defpoll music :interval "0.02s" "./scripts/music.sh 70")
+(defpoll baticon :interval "1s" "./scripts/baticon.sh")
+(defpoll window :interval "1s" "./scripts/activewindow.sh")
+(defpoll volume :interval "1s" "./scripts/getvol.sh")
+(defpoll time :interval "1s" "./scripts/time.sh")
+(defpoll ips :interval "1s" "./scripts/net-icon.sh")
