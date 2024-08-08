@@ -7,12 +7,14 @@ $dawn: (
 );
 
 $theme: $dawn;
+$sm-font-size: 15px;
 $font-size: 25px;
 $font-size-bg: 30px;
 $border-radius: 30px;
 $margin: 0 5px;
 $padding: 5 30px;
 $border-width: 1px;
+$sm-border-radius: 10px;
 $slider-min-width: 70px;
 $slider-min-height: 10px;
 $font-family: FiraCode Nerd Font Mono;
@@ -41,7 +43,7 @@ $font-family: FiraCode Nerd Font Mono;
     font-family: $font-family;
 }
 
-.bar{
+.bar {
     background-color: transparent;
 }
 
@@ -79,7 +81,6 @@ $font-family: FiraCode Nerd Font Mono;
   padding: $padding;
 }
 
-
 // Styles on classes (see eww.yuck for more information)
 
 .sidestuff slider {
@@ -90,6 +91,80 @@ $font-family: FiraCode Nerd Font Mono;
 .battery {
     margin: $margin;
 }
+
+.net {
+    font-size: 60%;
+}
+
+.icon {
+    margin: $margin;
+    font-size: 200%;
+}
+
+.button {
+    margin: $margin;
+    padding: $padding;
+    border-radius: $sm-border-radius;
+
+    &:hover{
+        background: linear-gradient(80deg, rgba(199,63,74,.5) 5%, rgba(81,36,140,.5) 100%);
+	transition: .5s;
+    }
+}
+
+.hoverMenu{
+  border-radius: $sm-border-radius;
+  border-style: solid;
+  border-width: $border-width;
+  border-color: theme(bd);
+  background-color: theme(bg);
+  color: theme(fg);
+  font-size: $sm-font-size;
+  padding: $padding;
+}
+
+.txGraph,
+.rxGraph{
+    margin: $margin;
+    padding: $padding;
+    font-size: $sm-font-size;
+    color: rgba(199,63,74,1);
+}
+
+
+.music,
+.ram{
+    &:hover{
+	color: rgba(199,63,74,1);
+	font-size: 120%;
+	transition: .5s;
+    }
+    &:active{
+	color: rgba(81,36,140,1);
+	font-size: 100%;
+	transition: .5s;
+    }
+}
+
+.net,
+.time {
+    margin: $margin;
+}
+
+.workspace {
+    background: rgba(100,100,100,0.2);
+    border-radius:30 0px;
+    margin: 0px;
+    padding: 0px 10px;
+    transition: .5s;    
+
+    &:hover{
+    background: linear-gradient(80deg, rgba(199,63,74,1) 5%, rgba(81,36,140,1) 100%);
+    padding: 3px 13px;
+    transition: .2s;
+    }	
+}
+
 
 .metric scale trough highlight {
   all: unset;

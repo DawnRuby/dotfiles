@@ -41,13 +41,16 @@
 (add-hook 'after-init-hook #'elpaca-process-queues)
 (elpaca `(,@elpaca-order))
 
-
 ;;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ;;+++++++++++++++++++Install Packages+++++++++++++++++++++++++++++++
 ;;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 (elpaca
     (rust-mode :host github :repo "rust-lang/rust-mode")
     (message "Loading Rust mode.."))
+
+(elpaca
+    (yuck-mode :host github :repo "mmcjimsey26/yuck-mode")
+    (message "Loading Yuck Mode"))
 
 (elpaca
   (rustic :host github :repo "emacs-rustic/rustic")

@@ -1,0 +1,153 @@
+// =============================================================================
+//
+// Waybar configuration
+//
+// Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+//
+// =============================================================================
+//
+{
+    // -------------------------------------------------------------------------
+    // Global configuration
+    // -------------------------------------------------------------------------
+
+    "layer": "top",
+    "position": "top",
+    "background": "transparent",
+    "height": 5,
+    "margin": 0,
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    //"modules-center": [
+    //    "hyprland/window"
+    //],
+    "modules-right": [
+        "custom/media",
+        "pulseaudio",
+        "network",
+        "backlight",
+        "memory",
+        "cpu",
+        "temperature",
+        "battery",
+        "clock#time",
+        "tray"],
+
+
+    // -------------------------------------------------------------------------
+    // Modules
+    // -------------------------------------------------------------------------
+    "hyprland/workspaces": {
+    	"format": "{icon} 󰍹",
+        "on-click": "activate",
+     	"on-scroll-up": "hyprctl dispatch workspace e+1",
+     	"on-scroll-down": "hyprctl dispatch workspace e-1"
+    },
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "default": ""
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mpd.sh 2> /dev/null", // Script in resources folder
+	"on-click": "kitty /usr/bin/ncmpcpp"
+    },
+    "battery": {
+        "interval": 10,
+        "states": {
+            "third-full": 66,
+            "half": 50,
+            "third": 33,
+            "critical": 10
+        },
+        // Connected to AC
+        "format": "󰂄 {capacity}%", // Icon: bolt
+        // Not connected to AC
+        "format-discharging": "{icon} {capacity}%",
+        "format-icons": ["","","","",""],
+        "tooltip": true
+    },
+
+    "clock#time": {
+        "interval": 1,
+        "format": "{:%m/%d/%y - %H:%M:%S}",
+        "tooltip": false,
+	"on-click": "thunderbird"
+    },
+    "memory": {
+        "interval": 5,
+        "format": "󰍛 {}%",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        },
+	"on-click": "gnome-system-monitor"
+    },
+
+    "cpu": {
+        "interval": 5,
+        "format": " {usage}%",
+        "states": {
+          "warning": 70,
+          "critical": 90
+        },
+	"on-click": "gnome-system-monitor"
+    },
+    "backlight": {
+	"format": "{percent}% {icon}",
+	"format-icons": [
+	"󰃝",
+	"󰃠"]
+    },
+    "network": {
+        "interval": 5,
+        "format-wifi": " {essid} ({signalStrength}%)", // Icon: wifi
+        "format-ethernet": "󰈀 {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
+        "format-disconnected": "⚠ Disconnected",
+        "tooltip-format": "{ifname}: {ipaddr}",
+        "on-click": "nm-connection-editor"
+    },
+
+    "sway/mode": {
+        "format": "<span style=\"italic\">  {}</span>", // Icon: expand-arrows-alt
+        "tooltip": false
+    },
+
+    "sway/window": {
+        "format": "{}",
+        "max-length": 120
+    },
+
+    "pulseaudio": {
+        "scroll-step": 1,
+        "format": "{volume}% 󰓃 {format_source}",
+        "format-bluetooth": "{volume}%  {format_source}",
+        "format-bluetooth-muted": "󰗿 {format_source}",
+        "format-muted": "󰓄 {format_source}",
+        "format-source": "{volume}% 󰍬",
+        "format-source-muted": "󰍭",
+        "on-click": "pavucontrol"
+    },
+    "temperature": {
+      "thermal-zone": 2,
+      "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input"],
+      "critical-threshold": 90,
+      "interval": 5,
+      "format": "{icon}  {temperatureC}°C",
+      "format-icons": [
+          "", // Icon: temperature-empty
+          ""  // Icon: temperature-full
+      ],
+      "on-click": "gnome-system-monitor",
+      "tooltip": true
+    },
+
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    }
+
+}

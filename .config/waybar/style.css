@@ -1,0 +1,278 @@
+@import "color.css";
+
+@keyframes gradient {
+    0%{background-position:0% 9%}
+    50%{background-position:100% 92%}
+    100%{background-position:0% 9%}
+}
+
+@keyframes warning {
+    0%{background-position:0% 9%}
+    50%{background-position:100% 92%}
+    100%{background-position:0% 9%}
+}
+
+* {
+    font-family: FiraCode Nerd Font Mono;
+    font-size: 20px;
+}
+
+#workspaces button {
+    background-color: transparent;
+    border-radius: 0px;
+    color: @white;
+    transition: .5s;
+}
+
+#workspaces button:hover {
+    background: linear-gradient(145deg, rgba(199,63,74,1) 50%, rgba(81,36,140,1) 100%);
+    border-radius: 0px;
+    transition: .5s;
+}
+
+
+window#waybar {
+    background-color: rgba(10,10,10,0.65);
+    transition-property: transparent;
+    transition-duration: .5s;
+    color: @white;
+}
+
+window#waybar.empty {
+    background-color: rgba(10,10,10,0.65);
+    color: @white;
+}
+window#waybar.solo {
+    background-color: rgba(10,10,10,0.65);
+    color: @white;
+}
+
+button {
+    box-shadow: inset 0 -3px transparent;
+    padding-right: 20px;
+    border: none;
+    border-radius: 7px;
+}
+
+#tray {
+    background-color: @black;
+    padding: 0 20px;
+    border-radius: 0px;
+    
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#temperature_gpu,
+#backlight,
+#network,
+#wireplumber,
+#custom-media,
+#pulseaudio,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#custom-media,
+#battery,
+#power-profiles-daemon
+{
+    background: linear-gradient(145deg, rgba(81,36,140,.95) 50%, rgba(199,63,74,.95) 100%);
+    color: @white;
+    padding: 0 15px;
+    margin-left: 5px;
+    min-height: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px transparent;
+    border-radius: 7px;
+    transition: .5s;
+}
+
+
+window#waybar {
+    background-color: rgba(10,10,10,0.65);
+    transition-property: transparent;
+    transition-duration: .5s;
+    color: @white;
+}
+
+window#waybar.empty {
+    background-color: rgba(10,10,10,0.65);
+    color: @white;
+}
+window#waybar.solo {
+    background-color: rgba(10,10,10,0.65);
+    color: @white;
+}
+
+button {
+    box-shadow: inset 0 -3px transparent;
+    padding-right: 20px;
+    border: none;
+    border-radius: 7px;
+}
+
+#tray {
+    background-color: @black;
+    padding: 0 20px;
+    border-radius: 0px;
+    
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#temperature_gpu,
+#backlight,
+#network,
+#wireplumber,
+#custom-media,
+#pulseaudio,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#custom-media,
+#battery,
+#power-profiles-daemon
+{
+    background: linear-gradient(145deg, rgba(81,36,140,.95) 50%, rgba(199,63,74,.95) 100%);
+    color: @white;
+    padding: 0 15px;
+    margin-left: 5px;
+    min-height: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px transparent;
+    border-radius: 7px;
+    transition: .5s;
+}
+
+#clock:hover,
+#cpu:hover,
+#memory:hover,
+#disk:hover,
+#temperature:hover,
+#temperature_gpu:hover,
+#pulseaudio:hover,
+#network:hover,
+#custom-media:hover
+{
+    background: linear-gradient(145deg, rgba(199,63,74,1) 50%, rgba(81,36,140,1) 100%);
+    transition: .5s;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#battery.third-full{
+    background: linear-gradient(309deg, rgba(199,63,74,1) 0%, rgba(81,36,140,1) 66%, rgba(252,158,33,1) 100%);
+}
+
+#battery.half {
+    background: linear-gradient(309deg, rgba(199,63,74,1) 0%, rgba(81,36,140,1) 50%, rgba(252,158,33,1) 100%);
+}
+
+#battery.third{
+    background: linear-gradient(309deg, rgba(199,63,74,1) 0%, rgba(81,36,140,1) 33%, rgba(252,158,33,1) 100%);
+}
+
+#battery.charging, #battery.plugged {
+   background: linear-gradient(309deg, rgba(199,63,74,1) 0%, rgba(81,36,140,1) 33%, rgba(252,158,33,1) 100%);
+    background-size: 1000% 1000%;
+    animation: gradient 20s ease infinite;
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+    background: linear-gradient(309deg, #c73f4a, #51248c, #c73f4a, #2b1491);
+    background-size: 1000% 1000%;
+    animation: warning 10s ease infinite;
+}
+
+#power-profiles-daemon {
+    /*padding-right: 15px;*/
+}
+
+#power-profiles-daemon.performance {
+    background-color: @red;
+    color: @white;
+}
+
+#power-profiles-daemon.balanced {
+    background-color: @blue;
+    color: @white;
+}
+
+#power-profiles-daemon.power-saver {
+    background-color: @green;
+    color: @white;
+}
+
+label:focus {
+    background-color: @white;
+}
+
+#wireplumber.muted {
+    background-color: @red;
+}
+
+#temperature.critical {
+    background: linear-gradient(309deg, #c73f4a, #fc9e21, #c73f4a, #fc9e21);
+    background-size: 1000% 1000%;
+    animation: warning 10s ease infinite;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @red;
+}
+
+#idle_inhibitor {
+    background-color: @gray;
+}
+
+#idle_inhibitor.activated {
+    background-color: @white;
+    color: @black;
+}
+
+#keyboard-state > label {
+}
+
+#keyboard-state > label.locked {
+    background: @black;
+}
+
+#scratchpad.empty {
+    background-color: transparent;
+}
+
+#privacy-item.screenshare {
+    background-color: @red;
+}
+
+#privacy-item.audio-in {
+    background-color: @green;
+}
+
+#privacy-item.audio-out {
+    background-color: @blue;
+}

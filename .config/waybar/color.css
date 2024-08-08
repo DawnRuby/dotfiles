@@ -1,0 +1,18 @@
+@define-color blue #3a98e0;
+@define-color red #fe32af;
+@define-color green #49FE32;
+@define-color yellow #948065;
+@define-color white #dbd8d4;
+@define-color purple #743dbb;
+@define-color pink #eddcd0;
+@define-color gray #2a232a;
+@define-color light-gray #463d46;
+@define-color black #0e0e0e;
+@define-color dark-red #a9277e;
+@define-color dark-blue #186aa9;
+@define-color dark-green #72B705;
+@define-color dark-purple #51248c;
+@define-color brown #432f30;
+@define-color transparent rgba(0,0,0,0);
+
+
